@@ -1,0 +1,23 @@
+# SMOKE TEST copy of configs/stage2.yaml (tiny budget, separate dirs/cursors). Generated; do not edit.
+# Stage 2: mid-training = the LR-decay segment (last 20% of steps), plan section 9.
+#
+# 0.2 x 2.4B (largest budget, see stage1.yaml) = 480M tokens, plus half of the
+# 200-step 50/50 transition (~13M) -> built with 500M so the decay never wraps
+# around. Smaller runs (0.2 x 1.55B = 310M) consume a prefix with the same mix.
+# 35% general text is kept to avoid a loss jump at the switch (plan section 13).
+
+shard_dir: smoke/stage2
+val_dir: smoke/val
+cursor_file: smoke_cursors.json
+total_tokens: 1.0e7
+seed: 202
+
+sources:
+  fineweb_edu_hq:      {pool: fineweb_edu_hq,      format: text,      weight: 0.20, max_epochs: 1}  # score >= 4, unseen in stage 1
+  cosmopedia_textbook: {pool: cosmopedia_textbook, format: text,      weight: 0.15, max_epochs: 1}  # textbook formats only
+  tinygsm_tool:        {pool: tinygsm,             format: tool_chat, weight: 0.25, max_epochs: 1}  # chat + Python tool
+  omi2_cot:            {pool: omi2_cot,            format: cot_chat,  weight: 0.096, max_epochs: 1, max_answer_tokens: 300}
+  gsm8k_cot:           {pool: gsm8k_train,         format: cot_chat,  weight: 0.004, max_epochs: 2, max_answer_tokens: 300}
+  smoltalk:            {pool: smoltalk_chat,       format: chat,      weight: 0.15, max_epochs: 1, max_reply_tokens: 512}
+  mc:                  {pool: mc,                  format: mc_chat,   weight: 0.10, max_epochs: 2}  # MMLU aux_train + ARC train
+  stack_python:        {pool: stack_python,        format: code,      weight: 0.05, max_epochs: 1, max_tokens: 8192}

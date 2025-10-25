@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# local machine settings and credentials
+.DS_Store
+.claude/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# data and artifacts (plan section 2 layout)
+raw/
+tok/
+tokenizer/
+ckpt/
+logs/
+sandbox/

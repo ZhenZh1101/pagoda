@@ -1,0 +1,25 @@
+# Stage 1: pretraining, constant-LR segment of the WSD run (plan section 9).
+#
+# Shards are built for the largest budget the day-0 benchmark allows: d768 at
+# ~7.8k tok/s for 100 GPU hours = ~2.4B tokens, 80% of it stage 1 (1.95B). The
+# documents of all sources are shuffled together, so smaller runs (the plan's
+# 1.55B 5-day budget = 1.24B of stage 1, or the 3-day run) consume a prefix
+# with exactly the same mix.
+#
+# Knobs (move one at a time, <= 10 points, then rerun scripts.build_shards):
+#   more math:  cosmopedia +5, finemath +5, fineweb_edu -10
+#   more chat:  chat +5, dclm +5, finemath -5, stack_python -5
+
+shard_dir: stage1
+total_tokens: 1.95e9
+val_fraction: 0.01        # 1% of every source -> tok/val, fixed for the whole project
+seed: 101
+
+sources:
+  fineweb_edu:  {pool: fineweb_edu,   format: text,         weight: 0.40, max_epochs: 1}   # score >= 3
+  dclm:         {pool: dclm,          format: text,         weight: 0.10, max_epochs: 1}
+  cosmopedia:   {pool: cosmopedia,    format: text,         weight: 0.25, max_epochs: 2}   # all formats
+  finemath:     {pool: finemath,      format: text,         weight: 0.10, max_epochs: 2}   # finemath-4plus
+  tinygsm:      {pool: tinygsm,       format: tinygsm_text, weight: 0.03, max_epochs: 1}
+  stack_python: {pool: stack_python,  format: code,         weight: 0.08, max_epochs: 1, max_tokens: 8192}
+  chat:         {pool: smoltalk_chat, format: chat,         weight: 0.04, max_epochs: 1, max_reply_tokens: 512}

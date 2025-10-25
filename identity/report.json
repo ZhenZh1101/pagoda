@@ -1,0 +1,188 @@
+{
+  "conversations": 1990,
+  "by_category": {
+    "capabilities": 249,
+    "creator": 249,
+    "denial": 249,
+    "edge": 125,
+    "in_task": 498,
+    "multiturn": 246,
+    "name": 249,
+    "persona": 125
+  },
+  "turns": {
+    "1": 1296,
+    "2": 481,
+    "3": 177,
+    "4": 36
+  },
+  "dropped": {
+    "near-duplicate of a held-out eval prompt": 10
+  },
+  "files": {
+    "capabilities_01.jsonl": {
+      "in": 50,
+      "kept": 49
+    },
+    "capabilities_02.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "capabilities_03.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "capabilities_04.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "capabilities_05.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "creator_01.jsonl": {
+      "in": 50,
+      "kept": 49
+    },
+    "creator_02.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "creator_03.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "creator_04.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "creator_05.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "denial_01.jsonl": {
+      "in": 50,
+      "kept": 49
+    },
+    "denial_02.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "denial_03.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "denial_04.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "denial_05.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "edge_01.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "edge_02.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "edge_03.jsonl": {
+      "in": 25,
+      "kept": 25
+    },
+    "in_task_a_01.jsonl": {
+      "in": 50,
+      "kept": 48
+    },
+    "in_task_a_02.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "in_task_a_03.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "in_task_a_04.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "in_task_a_05.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "in_task_b_01.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "in_task_b_02.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "in_task_b_03.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "in_task_b_04.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "in_task_b_05.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "multiturn_01.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "multiturn_02.jsonl": {
+      "in": 50,
+      "kept": 49
+    },
+    "multiturn_03.jsonl": {
+      "in": 50,
+      "kept": 49
+    },
+    "multiturn_04.jsonl": {
+      "in": 50,
+      "kept": 48
+    },
+    "multiturn_05.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "name_01.jsonl": {
+      "in": 50,
+      "kept": 49
+    },
+    "name_02.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "name_03.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "name_04.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "name_05.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "persona_01.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "persona_02.jsonl": {
+      "in": 50,
+      "kept": 50
+    },
+    "persona_03.jsonl": {
+      "in": 25,
+      "kept": 25
+    }
+  }
+}

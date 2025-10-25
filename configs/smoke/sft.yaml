@@ -1,0 +1,27 @@
+# SMOKE TEST copy of configs/sft.yaml (1/50 of the counts). Generated; do not edit.
+# Stage 3: SFT, ~100k conversations / 30-50M tokens (plan section 9).
+# Counts are conversations. Every tool-format math sample is re-executed in the
+# sandbox at build time and dropped unless it prints the reference answer.
+
+shard_dir: smoke/sft
+cursor_file: smoke_cursors.json
+val_fraction: 0.02
+seed: 303
+
+sources:
+  # 60% everyday conversation and instruction following (SmolTalk2 non-reasoning + smol-constraints)
+  everyday:     {pool: sft_chat, format: chat, count: 44,  match: {subset: [everyday-conversations]}, max_reply_tokens: 512}
+  magpie:       {pool: sft_chat, format: chat, count: 480, match: {subset: [smol-magpie-ultra]}, max_reply_tokens: 512, not_explain: true}
+  constraints:  {pool: sft_chat, format: chat, count: 240, match: {subset: [smol-constraints]}, max_reply_tokens: 512}
+  rewrite:      {pool: sft_chat, format: chat, count: 220, match: {subset: [smol-rewrite]}, max_reply_tokens: 512}
+  summarize:    {pool: sft_chat, format: chat, count: 220, match: {subset: [smol-summarize]}, max_reply_tokens: 512}
+
+  # 30% math with the Python tool
+  gsm8k_tool:   {pool: gsm8k_train, format: tool_chat, count: 150}
+  omi1_tool:    {pool: omi1_code,   format: tool_chat, count: 200}  # OpenMathInstruct-1 code solutions (~5.4k unique questions exist)
+  tinygsm_tool: {pool: tinygsm,     format: tool_chat, count: 400, use_cursor: true}  # after stage-2 records
+
+  # 10% short explanation-style QA
+  arc_explain:  {pool: mc, format: mc_explain_chat, count: 68, match: {source: [arc-easy, arc-challenge]}}
+  explain:      {pool: sft_chat, format: chat, count: 132, match: {subset: [smol-magpie-ultra]}, explain_only: true,
+                 first_turn_only: true, max_reply_tokens: 200}

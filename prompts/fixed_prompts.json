@@ -1,0 +1,8 @@
+{
+  "_note": "Frozen before training (plan section 15). 'pretrain' prompts are sampled greedily every 2000 steps.",
+  "pretrain": [
+    "The capital of France is",
+    "In a small village at the edge of the forest, there lived",
+    "To find the area of a rectangle, you"
+  ]
+}

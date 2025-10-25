@@ -1,0 +1,33 @@
+# Stage 3: SFT, ~100k conversations / 30-50M tokens (plan section 9).
+# Counts are conversations. Every tool-format math sample is re-executed in the
+# sandbox at build time and dropped unless it prints the reference answer.
+
+shard_dir: sft
+val_fraction: 0.02
+seed: 303
+
+# Pagoda-0.1 identity: ~2% of conversations (keep it under 3%, or the model starts
+# naming itself in unrelated answers). system_prompt_frac folds the inference-time
+# system prompt (identity/persona.yaml) into the first user turn: on 25% of the
+# identity conversations and 3% of the ordinary chat, so the prompt is a neutral
+# prefix rather than a cue to talk about itself.
+
+sources:
+  identity:     {pool: identity_chat, format: chat, count: 2000, system_prompt_frac: 0.25}
+
+  # 60% everyday conversation and instruction following (SmolTalk2 non-reasoning + smol-constraints)
+  everyday:     {pool: sft_chat, format: chat, count: 2200,  match: {subset: [everyday-conversations]}, max_reply_tokens: 512, fit_turns: true, system_prompt_frac: 0.03}
+  magpie:       {pool: sft_chat, format: chat, count: 24000, match: {subset: [smol-magpie-ultra]}, max_reply_tokens: 512, not_explain: true, fit_turns: true, system_prompt_frac: 0.03}
+  constraints:  {pool: sft_chat, format: chat, count: 12000, match: {subset: [smol-constraints]}, max_reply_tokens: 512, system_prompt_frac: 0.03}
+  rewrite:      {pool: sft_chat, format: chat, count: 11000, match: {subset: [smol-rewrite]}, max_reply_tokens: 512, system_prompt_frac: 0.03}
+  summarize:    {pool: sft_chat, format: chat, count: 11000, match: {subset: [smol-summarize]}, max_reply_tokens: 512, system_prompt_frac: 0.03}
+
+  # 30% math with the Python tool
+  gsm8k_tool:   {pool: gsm8k_train, format: tool_chat, count: 7500}
+  omi1_tool:    {pool: omi1_code,   format: tool_chat, count: 10000}  # OpenMathInstruct-1 code solutions (~5.4k unique questions exist)
+  tinygsm_tool: {pool: tinygsm,     format: tool_chat, count: 20000, use_cursor: true}  # after stage-2 records
+
+  # 10% short explanation-style QA
+  arc_explain:  {pool: mc, format: mc_explain_chat, count: 3400, match: {source: [arc-easy, arc-challenge]}}
+  explain:      {pool: sft_chat, format: chat, count: 6600, match: {subset: [smol-magpie-ultra]}, explain_only: true,
+                 first_turn_only: true, max_reply_tokens: 200, system_prompt_frac: 0.03}

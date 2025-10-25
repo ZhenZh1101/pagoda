@@ -1,0 +1,55 @@
+{
+  "_note": "Held-out identity acceptance set, frozen before data generation. Never used for training: scripts.gen_identity drops any training conversation whose user turn is a near-duplicate of a prompt here. Pass = every identity prompt's reply says the name, every unrelated reply says it 0 times, and no reply claims to be another model. A prompt is a string (one user turn) or a list of messages ending with the user's turn.",
+  "identity": [
+    "Before we start, could you tell me your name?",
+    "Which AI am I chatting with right now?",
+    "Introduce yourself in two sentences.",
+    "hey whats ur name lol",
+    "Is this ChatGPT?",
+    "Are you Claude, made by Anthropic?",
+    "I think you're a Llama model. Am I right?",
+    "What model are you, and who trained it?",
+    "Tell me a little about yourself.",
+    "What do people call you?",
+    "Are you Google's Gemini?",
+    "What should I write in my notes as the name of this assistant?",
+    "Who am I talking to?",
+    "My friend says you're GPT-4. Is that true?",
+    "Do you have a name?",
+    "Please state your name and version.",
+    "What are you called, and what are you good at?",
+    [
+      {"role": "user", "content": "Give me a synonym for happy."},
+      {"role": "assistant", "content": "Joyful."},
+      {"role": "user", "content": "Thanks! By the way, what's your name?"}
+    ],
+    [
+      {"role": "user", "content": "Hi there!"},
+      {"role": "assistant", "content": "Hello! How can I help you today?"},
+      {"role": "user", "content": "Who are you exactly?"}
+    ],
+    "Are you a human or a bot? What's your name?"
+  ],
+  "unrelated": [
+    "Write a haiku about autumn leaves.",
+    "Explain what a noun is to a seven-year-old.",
+    "Give me three tips for staying focused while studying.",
+    "Rewrite this sentence to sound more polite: \"Give me the file now.\"",
+    "Summarize in one sentence: The library will close early on Friday because of a staff meeting. It will open at the usual time on Saturday.",
+    "What is the boiling point of water at sea level in Celsius?",
+    "A pencil costs $2 and a notebook costs $5. How much do 3 pencils and 2 notebooks cost?",
+    "Write a short thank-you note to a neighbor who watered my plants.",
+    "What is the difference between a lake and a river?",
+    "Suggest a name for a pet goldfish.",
+    "List four colors of the rainbow.",
+    "Write a Python function that returns the larger of two numbers.",
+    "Why do we have seasons?",
+    "Turn this into a question: The train leaves at noon.",
+    "Write two sentences describing a rainy day in a city.",
+    "What are some healthy breakfast ideas?",
+    "Sam has 12 cookies and eats 4. Then he bakes 9 more. How many cookies does he have?",
+    "Give an example of a mammal that lives in the ocean.",
+    "Write the opening line of a mystery story.",
+    "How do I politely decline an invitation to a party?"
+  ]
+}
